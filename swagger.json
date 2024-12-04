@@ -75,7 +75,7 @@
   "info": {
     "title": "OpenAPI Security Definitions Demo - OpenAPI 3.0",
     "version": "0.0.1",
-    "description": "OpenAPI Security Definitions Demo OpenAPI 3.0 specification.\n\nSome useful links:\n- [The OpenAPI Security Definitions Demo Repo](https://github.com/CloudNStoyan/tsoa-project-demo)\n- [The swagger.json for the OpenAPI Security Definitions Demo](https://github.com/CloudNStoyan/tsoa-project-demo/blob/main/src/generated/swagger.yaml)",
+    "description": "OpenAPI Security Definitions Demo OpenAPI 3.0 specification.\n\nSome useful links:\n- [The OpenAPI Security Definitions Demo Repo](https://github.com/CloudNStoyan/openapi-and-swagger-ui-auth-demo)\n- [The swagger.json for the OpenAPI Security Definitions Demo](https://github.com/CloudNStoyan/openapi-and-swagger-ui-auth-demo/blob/main/swagger.json)\n\nNote: The order of the security definitions inside the `security` array in operations **MATTERS** and **WILL** override other types of authentications that are using the same header!",
     "contact": {}
   },
   "paths": {
