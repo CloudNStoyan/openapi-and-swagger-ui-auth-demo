@@ -1,0 +1,134 @@
+{
+  "openapi": "3.0.0",
+  "components": {
+    "schemas": {
+      "ProblemDetails": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Unauthorized"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "example": 401
+          },
+          "detail": {
+            "type": "string",
+            "example": "Access denied!"
+          },
+          "authentications": {
+            "type": "array",
+            "itemType": {
+              "type": "string"
+            },
+            "example": [
+              "Authorization: Basic c2ltcGxlLXVzZXJuYW1lOnNpbXBsZS1wYXNzd29yZA=="
+            ]
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "User": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Stoyan"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "authentications": {
+            "type": "array",
+            "itemType": {
+              "type": "string"
+            },
+            "example": [
+              "Authorization: Basic c2ltcGxlLXVzZXJuYW1lOnNpbXBsZS1wYXNzd29yZA=="
+            ]
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer_auth": {
+        "description": "The Bearer token is:\n\n`simple-bearer-token`",
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "basic_auth": {
+        "description": "The credentials are:\n\n`simple-username`\n\n`simple-password`",
+        "type": "http",
+        "scheme": "basic"
+      },
+      "api_key_auth": {
+        "description": "The API Key is:\n\n`simple-api-token`",
+        "type": "apiKey",
+        "in": "query",
+        "name": "key"
+      }
+    }
+  },
+  "info": {
+    "title": "OpenAPI Security Definitions Demo - OpenAPI 3.0",
+    "version": "0.0.1",
+    "description": "OpenAPI Security Definitions Demo OpenAPI 3.0 specification.\n\nSome useful links:\n- [The OpenAPI Security Definitions Demo Repo](https://github.com/CloudNStoyan/tsoa-project-demo)\n- [The swagger.json for the OpenAPI Security Definitions Demo](https://github.com/CloudNStoyan/tsoa-project-demo/blob/main/src/generated/swagger.yaml)",
+    "contact": {}
+  },
+  "paths": {
+    "/me": {
+      "get": {
+        "operationId": "GetMe",
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of the user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the user",
+        "summary": "Returns user",
+        "tags": ["Secure Routes"],
+        "security": [
+          {
+            "basic_auth": []
+          },
+          {
+            "bearer_auth": []
+          },
+          {
+            "api_key_auth": []
+          }
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Secure Routes",
+      "description": "Access to the secure routes",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ]
+}
